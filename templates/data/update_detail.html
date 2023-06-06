@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block head_content %}
+
+<title>Load data</title>
+    
+{% endblock head_content %}
+
+{% block container %}
+<div class="pagetitle">
+  <h1>Update detail</h1>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Data</h5>
+
+    <!-- Vertical Form -->
+    <form class="row g-3"  action="" class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" >
+      {% csrf_token %}
+      {% if form.errors %}
+  
+        <div class="alert alert-danger" role="alert">
+          {{ form.errors }}
+        </div>
+              
+      {% endif %}
+      <div class="d-none">
+        {{ form.employee.errors }}
+          <label for="{{ form.employee.id_for_label }}" class="col-lg-3 control-label"></label>
+        {{ form.employee  }}
+      </div>
+      <div class="col-12">
+        {{ form.antiquityt.errors }}
+          <label for="{{ form.subject.id_for_label }}" class="col-lg-3 control-label">Antiquity:</label>   
+        {{ form.antiquity }}
+      </div>
+      <div class="col-12">
+        {{ form.leave_days.errors }}
+          <label for="{{ form.leave_days.id_for_label }}" class="col-lg-3 control-label">Leave days:</label>   
+        {{ form.leave_days }}
+      </div>
+      <div class="col-12">
+        {{ form.remainder.errors }}
+          <label for="{{ form.remainder.id_for_label }}" class="col-lg-3 control-label">Remainder:</label>   
+        {{ form.remainder }}
+      </div>
+      <div class="col-12">
+        {{ form.year.errors }}
+          <label for="{{ form.year.id_for_label }}" class="col-lg-3 control-label">Year:</label>   
+        {{ form.year }}
+      </div>
+      <div class="col-12">
+        {{ form.status.errors }}
+          <label for="{{ form.status.id_for_label }}" class="col-lg-3 control-label">Expired:</label>   
+        {{ form.status }}
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form><!-- Vertical Form -->
+
+  </div>
+</div>
+
+
+
+
+{% endblock container%}

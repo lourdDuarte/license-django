@@ -1,0 +1,81 @@
+
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <span class="d-none d-lg-block">LICENSE</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div>
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+        {% if not request.user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'dashboard' %}">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'update_profile' %}">
+                <i class="bi bi-menu-button-wide"></i><span>Profile</span>
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed"  href=" {% url 'request_license' %}">
+                <i class="bi bi-menu-button-wide"></i><span>Request</span>
+                </a>
+            </li><!-- End Components Nav -->
+            {% if request.user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href=" {% url 'data' %}">
+                    <i class="bi bi-menu-button-wide"></i><span>Data</span>
+                    </a>
+                </li><!-- End Components Nav -->
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'logout' %} ">
+                <i class="bi bi-menu-button-wide"></i><span>Sign off</span>
+                </a>
+            </li><!-- End Components Nav -->
+        {% endif %}
+        {% if request.user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'dashboard' %}">
+                <i class="bi bi-menu-button-wide"></i><span>Dashboard admin</span>
+                </a>
+            </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'admin:index' %}">
+                <i class="bi bi-menu-button-wide"></i><span>Site administration</span>
+                </a>
+            </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'update_profile' %}">
+                <i class="bi bi-menu-button-wide"></i><span>Profile</span>
+                </a>
+            </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'request' %}">
+                <i class="bi bi-menu-button-wide"></i><span>Request received</span>
+                </a>
+            </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'logout' %} ">
+                <i class="bi bi-menu-button-wide"></i><span>Sign off</span>
+                </a>
+            </li><!-- End Components Nav -->
+        {% endif %}
+    </ul>
+
+  </aside>

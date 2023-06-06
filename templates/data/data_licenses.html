@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+{% block head_content %}
+
+<title>Load data</title>
+
+    
+{% endblock head_content %}
+
+
+{% block container %}
+
+    <a href="{% url 'new_detail' %}" >
+        <button class="btn btn-primary" >New Detail</button>
+    </a>
+
+<form enctype="multipart/form-data" method="POST" action="{% url 'data' %} " >
+    {% csrf_token %}
+    <div class="row mb-4 text-center">
+        <label class="col-sm-3 col-form-label">Select</label>
+        <div class="col-sm-5">
+        <select class="form-select " name="employee" id ="empployee" aria-label="Default select example">
+            <option selected>Select person</option>
+            {% for emp in employee  %}
+                <option value='{{emp.id}}'>{{emp.profile.user.first_name}} {{emp.profile.user.last_name}} </option> 
+            {% endfor %}
+        </select>
+        </div>
+    </div>
+    <div class="col-sm-10 text-center">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+{% if detail %}
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">Detail</h5>
+       
+        <!-- Table with stripped rows -->
+        <table class="table datatable">
+            <thead>
+            <tr>
+                <th scope="col">Year</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for d in detail %}
+            <tr>
+                <td>{{d.year}}</td>
+                <td>{{d.employee.profile.user.first_name}}</td>
+                <td>{{d.employee.profile.user.last_name}}</td>
+                <td>
+                    <a href="{% url 'update-detail' d.id %}">
+                        <i class="fa-solid fa-file-pen"></i>
+                    </a>
+                </td>
+                
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+        <!-- End Table with stripped rows -->
+
+        </div>
+    </div>
+{%endif%}
+   
+{% endblock container %}
+    
+
+    

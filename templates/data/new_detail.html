@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block head_content %}
+
+<title>New Detail</title>
+    
+{% endblock head_content %}
+
+
+{% block container %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">New Detail</h5>
+
+    <!-- Multi Columns Form -->
+    <form class="row g-3" role="form" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% if form.errors %}
+
+        <div class="alert alert-danger" role="alert">
+          {{ form.errors }}
+        </div>
+      {% endif %}
+        <div class="row mb-4 text-center">
+          <label class="col-sm-3 col-form-label">Select</label>
+          <div class="col-sm-5">
+          <select class="form-select " name="employee" id ="empployee" aria-label="Default select example">
+              <option selected>Select person</option>
+              {% for employee in detail  %}
+                <option value='{{employee.id}}'>{{employee.profile.user.first_name}} {{employee.profile.user.last_name}} </option> 
+              {% endfor %}
+          </select>
+          </div>
+      </div>
+      <div class="col-md-6">
+        <label for="inputEmail5" class="form-label">Antiquity:</label>
+        <input class="form-control" type="text" name="antiquity" id="antiquity">
+      </div>
+      <div class="col-md-6">
+        <label for="inputName5" class="form-label">Leave days:</label>
+        <input class="form-control" type="text" name="leave_days" id="leave_days">
+      </div>
+      <div class="col-md-6">
+        <label for="inputEmail5" class="form-label">Remainder:</label>
+        <input class="form-control" type="text" name="remainder" id="remainder">
+      </div>
+      <div class="col-md-6">
+        <label for="inputName5" class="form-label">Year:</label>
+        <input class="form-control" type="text" name="year" id="year">
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form><!-- End Multi Columns Form -->
+
+  </div>
+</div>
+
+    
+{% endblock container %}
+    
