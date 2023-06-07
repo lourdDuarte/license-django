@@ -9,48 +9,38 @@ from .forms import RequestLicenseForm
 @login_required
 def request_license(request):
     employee = request.user.profile.employee
+    all_request = RequestsLicense.objects.all()
+    
     if request.method == 'POST':
         form = RequestLicenseForm(request.POST)
         if form.is_valid():
-            data = form.cleaned_data
-            new_request = RequestsLicense(employee = employee)
-            new_request.last_name = data['last_name']
-            new_request.fist_name = data['first_name']
-            new_request.usufruct = data['usufruct']
-            new_request.date_form = data['date_form']
-            new_request.date_to = data['date_to']
-            new_request.description = data['description']
+            form.save()
+            return redirect('perfil/empleado/request.html')
 
-            new_request.save()
-            
-       
-    else:
-        form = RequestLicenseForm()
+    context = {'detail':all_request}
+    return render (request,'perfil/empleado/request.html',context)
     
-
-    return render(
-        request=request,
-        template_name='perfil/empleado/request.html',
-        context={
-            'employee': employee,
-            'user': request.user.profile.employee,
-            'form': form
-        }
-    )
+   
 
 
+@login_required
 def  update_request(request, pk):
-    license = RequestsLicense.objects.get(id=pk)
-    form = RequestLicenseForm(instance=license)
-    print(license)
-    # if request.method == 'POST':
-    #     form = RequestsLicense(request.POST, instance=license)
-    #     form.save()
-    #     return redirect('data')
+    detail = RequestsLicense.objects.get(id=pk)
+
+    form = RequestLicenseForm(instance=detail)
+    if request.method == 'POST':
+        form = RequestLicenseForm(request.POST, instance=detail)
+        comentario = request.POST['comentario']
+        if form.is_valid():
+            form.save()
+            print(comentario)
+            return redirect('request')
         
     context = {'form':form}
-    return render (request,'perfil/admin/view_request.html',context)
+    return render (request,'perfil/admin/update_license.html',context)
 
+
+@login_required
 def view_request(request):
     all_request = RequestsLicense.objects.all()
     context = {'request':all_request}
@@ -59,4 +49,4 @@ def view_request(request):
        'perfil/admin/view_request.html',
         context
     )  
-        
+

@@ -50,7 +50,7 @@ def update_profile(request):
         
     return render(
         request=request,
-        template_name='perfil/empleado/profile.html',
+        template_name='profile.html',
         context={
             'profile': user,
             'user': request.user,

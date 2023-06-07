@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+{% block head_content %}
+
+<title>Load data</title>
+    
+{% endblock head_content %}
+
+{% block container %}
+
+<div class="card">
+  <div class="card-body pt-3">
+    <div class="pagetitle">
+      <h1>Update </h1>
+    </div>
+    <!-- Vertical Form -->
+    <form class="row g-3"  action="" class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" >
+      {% csrf_token %}
+      {% if form.errors %}
+  
+        <div class="alert alert-danger" role="alert">
+          {{ form.errors }}
+        </div>
+              
+      {% endif %}
+      <div class="d-none">
+        {{ form.employee.errors }}
+          <label for="{{ form.employee.id_for_label }}" class="col-lg-3 control-label"></label>
+        {{ form.employee  }}
+      </div>
+      <div class="d-none">
+        {{ form.last_name.errors }}
+          <label for="{{ form.last_name.id_for_label }}" class="col-lg-3 control-label"></label>
+        {{ form.last_name  }}
+      </div>
+      <div class="d-none">
+        {{ form.fist_name.errors }}
+          <label for="{{ form.fist_name.id_for_label }}" class="col-lg-3 control-label"></label>
+        {{ form.fist_name}}
+      </div>
+      <div class="d-none">
+        {{ form.usufruct.errors }}
+          <label for="{{ form.usufruct.id_for_label }}" class="col-lg-3 control-label"></label>
+        {{ form.usufruct  }}
+      </div>
+      <div class="d-none">
+        {{ form.date_form.errors }}
+          <label for="{{ form.date_form.id_for_label }}" class="col-lg-3 control-label"></label>
+        {{ form.date_form  }}
+      </div>
+      <div class="d-none">
+        {{ form.date_to.errors }}
+          <label for="{{ form.date_to.id_for_label }}" class="col-lg-3 control-label"></label>
+        {{ form.date_to  }}
+      </div>
+      <div class="d-none">
+        {{ form.description.errors }}
+          <label for="{{ form.description.id_for_label }}" class="col-lg-3 control-label"></label>
+        {{ form.description  }}
+      </div>
+      <div class="col-11" style="margin-top: 2em;">
+        {{ form.status.errors }}
+        <label for="{{ form.status.id_for_label }}" class="col-lg-3 control-label">Aprobar solicitud:</label>
+        {{ form.status }}
+
+      </div>
+      <div class="row mb-3" style="margin-top: 2em;">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Comentario</label>
+        <div class="col-sm-6">
+          <textarea class="form-control"  name="comentario" id="comentario" style="height: 100px"></textarea>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form><!-- Vertical Form --> 
+
+  </div>
+</div>
+
+
+
+
+{% endblock container%}
