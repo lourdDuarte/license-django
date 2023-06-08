@@ -12,55 +12,53 @@
         <h6 class="m-0 font-weight-bold text-primary">DataTables Report</h6>
     </div>
 
-        <div class="card-body">
-            <div class="table-responsive">
-               
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Received</th>
-                                <th>Person</th>
-                                <th>Usufruct</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
+    <div class="col-12">
+        <div class="card recent-sales overflow-auto">
+
+          <div class="card-body">
+            <h5 class="card-title">|REQUEST|</h5>
+
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                            <th>Received</th>
+                            <th>Person</th>
+                            <th>Usufruct</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
                                 
                             
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Year</th>
-                                <th>Antiquity</th>
-                                <th>Leave days</th>
-                                <th>Remainder</th>
-                                <th>Status</th>
-                            </tr>
-                        </tfoot>
+                    </tr>
+                </thead>
+                
                         
-                        {% for r in request %}
-                        <tbody>
-                            <tr>
-                                <td>{{r.created}}</td>
-                                <td>{{r.fist_name}} {{r.last_name}}</td>
-                                <td>{{r.usufruct}}</td>
-                                <td>{{r.date_form}} - {{r.date_to}}</td>
-                                {% if r.status == 0 %}
-                                    <td>SIN APROBAR</td>
-                                {% else %}
-                                    <td>APROBADO</td>
-                                {% endif %}
-                                <td>
-                                    
-                                    <a href="{% url 'update-request' r.id %}">
-                                        <i class="fa-solid fa-file-pen"></i>
-                                    </a>
-                                    
-                                </td>
-                                    
-                            </tr>                            
-                        </tbody>
-                        {% endfor %}    
+               
+                <tbody>
+                    {% for r in request %}
+                        <tr>
+                            <td>{{r.created}}</td>
+                            <td>{{r.fist_name}} {{r.last_name}}</td>
+                            <td>{{r.usufruct}}</td>
+                            <td>{{r.date_form}} - {{r.date_to}}</td>
+                                        {% if r.status == 0 %}
+                                <td>SIN APROBAR</td>
+                                        {% else %}
+                                <td>APROBADO</td>
+                                        {% endif %}
+                            <td>
+                                            
+                                <a href="{% url 'update-request' r.id %}">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </a> 
+                                <a href="{% url 'delete-request' r.id %}">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                </a>            
+                            </td>                 
+                        </tr>    
+                    {% endfor %}                         
+                </tbody>
+                           
                         
                             
                     </table>

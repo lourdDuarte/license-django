@@ -26,6 +26,7 @@ urlpatterns = [
     ),
     # vistas sin acceso de admin
     path('dashboard/', emp.dashboard_view, name='dashboard'),
+    path('delete-request/<str:pk>/', license.delete_request, name='delete-request'),
     path('solicitud/', license.request_license, name='request_license'),
     path('profile/',emp.update_profile,name="update_profile"),
     path('load-data/', detail.search_datail, name='data'),

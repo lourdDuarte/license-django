@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from RequestsLicense.models import RequestsLicense
 from .forms import RequestLicenseForm
+import yagmail
 
 # Create your views here.
 @login_required
@@ -26,7 +27,7 @@ def request_license(request):
 @login_required
 def  update_request(request, pk):
     detail = RequestsLicense.objects.get(id=pk)
-
+    correo = detail.employee.profile.user.email
     form = RequestLicenseForm(instance=detail)
     if request.method == 'POST':
         form = RequestLicenseForm(request.POST, instance=detail)
@@ -34,10 +35,16 @@ def  update_request(request, pk):
         if form.is_valid():
             form.save()
             print(comentario)
+            send_email(correo,comentario)
             return redirect('request')
         
     context = {'form':form}
     return render (request,'perfil/admin/update_license.html',context)
+
+def delete_request(request, pk):
+    request = RequestsLicense.objects.get(id=pk)
+    request.delete()
+    return redirect('request')
 
 
 @login_required
@@ -49,4 +56,14 @@ def view_request(request):
        'perfil/admin/view_request.html',
         context
     )  
+
+
+def send_email(destinario, msj):
+    password = 'badspsaurjkgkxvj'
+    email = 'lourdes123duarte@gmail.com'
+    yag = yagmail.SMTP(user = email, password = password)
+    destinario = [destinario]
+    asunto = 'SOLICITUD DE LICENCIA'
+    mensaje = msj
+    yag.send(destinario,asunto, mensaje)
 
