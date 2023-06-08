@@ -35,16 +35,16 @@
                         
                
                 <tbody>
-                    {% for r in request %}
+                    {% for r in all_request %}
                         <tr>
                             <td>{{r.created}}</td>
                             <td>{{r.fist_name}} {{r.last_name}}</td>
                             <td>{{r.usufruct}}</td>
                             <td>{{r.date_form}} - {{r.date_to}}</td>
                                         {% if r.status == 0 %}
-                                <td>SIN APROBAR</td>
+                                <td><span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>En espera</span></td>
                                         {% else %}
-                                <td>APROBADO</td>
+                                <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Aprobada</span></td>
                                         {% endif %}
                             <td>
                                             

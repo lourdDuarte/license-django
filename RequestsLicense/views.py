@@ -9,17 +9,14 @@ import yagmail
 # Create your views here.
 @login_required
 def request_license(request):
-    employee = request.user.profile.employee
-    all_request = RequestsLicense.objects.all()
-    
+    form = RequestLicenseForm()
     if request.method == 'POST':
         form = RequestLicenseForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('perfil/empleado/request.html')
+            return redirect('dashboard')
 
-    context = {'detail':all_request}
-    return render (request,'perfil/empleado/request.html',context)
+    return render (request,'perfil/empleado/request.html',{'form':form})
     
    
 
@@ -33,6 +30,7 @@ def  update_request(request, pk):
         form = RequestLicenseForm(request.POST, instance=detail)
         comentario = request.POST['comentario']
         if form.is_valid():
+
             form.save()
             print(comentario)
             send_email(correo,comentario)
@@ -50,7 +48,7 @@ def delete_request(request, pk):
 @login_required
 def view_request(request):
     all_request = RequestsLicense.objects.all()
-    context = {'request':all_request}
+    context = {'all_request': all_request}
     return render(
         request,
        'perfil/admin/view_request.html',
