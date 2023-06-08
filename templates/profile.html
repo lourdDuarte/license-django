@@ -14,7 +14,100 @@
 
 
 {% block container %}
-<div class="card">
+
+  <div class="col-xl-11">
+    
+
+  <div class="card">
+    <div class="card-body pt-3">
+      <!-- Bordered Tabs -->
+      <ul class="nav nav-tabs nav-tabs-bordered">
+
+        <li class="nav-item">
+          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Edit profile</button>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+        </li>
+
+      </ul>
+      <div class="tab-content pt-2">
+
+        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+          <h5 class="card-title">Data</h5>
+          <form class="row g-3" role="form" method="POST" enctype="multipart/form-data" action="{% url 'update_profile' %} ">
+            {% csrf_token %}
+            {% if form.errors %}
+        
+              <div class="alert alert-danger" role="alert">
+                {{ form.errors }}
+              </div>
+                    
+            {% endif %}
+            <div class="col-12">
+              <label for="inputNanme4" class="form-label">First name:</label>
+              <input type="text" class="form-control" value="{{user.last_name}}" name="last_name" id="last_name">
+            </div>
+            <div class="col-12">
+              <label for="inputEmail4" class="form-label">Last name:</label>
+              <input type="text" class="form-control" value="{{user.first_name}}" name ="first_name" id="first_name">
+            </div>
+            <div class="col-12">
+              <label for="inputPassword4" class="form-label">User:</label>
+              <input type="text" class="form-control" value="{{user.username}}" name="username" id="username">
+            </div>
+            <div class="col-12">
+              <label for="inputAddress" class="form-label">Address</label>
+              <input type="text" class="form-control" value="{{user.email}}" name="email" id="email">
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Update</button>
+              <a href="{% url 'change_password' %}" class="btn btn-secondary">¿change password?</a>
+             
+            </div>
+          </form><!-- Vertical Form -->
+
+        </div>
+        
+          <!-- Change Password Form -->
+            <form role="form" method="post" action="{% url 'change_password' %} ">
+                {% csrf_token %}
+          
+                
+                <div class="row mb-3">
+                  <label for="id_old_password" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input type="password" class="form-control" name="old_password" autocomplete="current-password" autofocus="" required="" id="id_old_password">                
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="id_new_password1" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input type="password" class="form-control" name="new_password1" autocomplete="new-password" required="" id="id_new_password1">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="id_new_password2" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input type="password" class="form-control" name="new_password2" autocomplete="new-password" required="" id="id_new_password2">
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Change Password</button>
+                </div>
+           </form><!-- End Change Password Form -->
+
+        </div>
+
+      </div><!-- End Bordered Tabs -->
+
+    </div>
+  </div>
+{% comment %} <div class="card">
   <div class="card-body pt-3">
     <!-- Bordered Tabs -->
     <ul class="nav nav-tabs nav-tabs-bordered">
@@ -59,7 +152,7 @@
     </div><!-- End Bordered Tabs -->
 
   </div>
-</div>
+</div> {% endcomment %}
 {% comment %} <div class="pagetitle">
   <h1>Profile</h1>
 </div>

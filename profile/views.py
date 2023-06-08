@@ -1,10 +1,12 @@
 import re
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from profile.models import Profile
 from employee.models import Employee
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -65,6 +67,14 @@ def signup_view(request):
         return redirect('login')
         
     return render (request,'register.html')
+
+def change_password(request):
+    form = PasswordChangeForm(user=request.user, data=request.POST or None)
+    if form.is_valid():
+        form.save()
+        update_session_auth_hash(request, form.user)
+        redirect('dashboard')
+    return render (request, 'profile.html', {'form':form})
 
 @login_required
 def dashboard_admin(request):

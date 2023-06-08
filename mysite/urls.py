@@ -21,10 +21,7 @@ urlpatterns = [
     path('logout/', pf.logout_view, name = 'logout'),
     path(
         'change-password/',
-        auth_views.PasswordChangeView.as_view(
-            template_name='change-password.html',
-            success_url = reverse_lazy('change_password')
-        ),
+        pf.change_password,
         name='change_password'
     ),
     # vistas sin acceso de admin
