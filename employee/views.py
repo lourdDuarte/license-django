@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from profile.forms import ProfileForm
 from employee.models import Employee
 from employeeDetail.models import EmployeeDetail
+from RequestsLicense.models import RequestsLicense
 from django.db.models import Count
 from django.db.models import Sum
 
@@ -24,6 +25,10 @@ def dashboard_view(request):
     remainder = EmployeeDetail.objects.filter(employee=employee, status=False).aggregate(total=Sum('remainder'))
     total_remainder ={'remain': remainder}
     context.update(total_remainder)
+
+    license = RequestsLicense.objects.values_list('date_form', 'date_to').filter(employee=employee, status=1).order_by('fecha_actualizacion')[:1]
+    ultimate_license = {'license':license}
+    context.update(ultimate_license)
 
     
 

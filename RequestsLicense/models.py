@@ -13,6 +13,7 @@ class RequestsLicense(models.Model):
     description = models.CharField(max_length=100)
     status = models.BooleanField(default=False)
     created = models.DateField(auto_now_add=True)
+    fecha_actualizacion = models.DateTimeField(auto_now=True)
 
 
 

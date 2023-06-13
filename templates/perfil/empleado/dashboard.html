@@ -6,8 +6,7 @@
 {% endblock %}
 
 {% block container %}
-<div class="pagetitle">
-    <h1>Dashboard</h1>
+<h1>Dashboard</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -15,130 +14,172 @@
       </ol>
     </nav>
   
-  <section class="section dashboard">
-    <div class="row">
+<section class="section dashboard">
+  <div class="row">
 
-      <!-- Left side columns -->
-      <div class="col-lg-8">
-        <div class="row">
+    <!-- Left side columns -->
+    <div class="col-lg-8">
+      <div class="row">
 
-          <!-- CARD -->
-          <div class="col-xxl-4 col-md-6">
-            <div class="card info-card sales-card">
+       <!-- CARD -->
+       <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
 
 
-              <div class="card-body">
-                <h5 class="card-title">Ultima solicitud aprobada</span></h5>
+          <div class="card-body">
+            <h5 class="card-title">Ultima solicitud aprobada</span></h5>
 
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-calendar2-check-fill"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>145</h6>
-                   
-                  </div>
-                </div>
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <i class="bi bi-calendar2-check-fill"></i>
               </div>
-
-            </div>
-          </div><!-- END CARD -->
-
-           <!-- CARD -->
-           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card sales-card">
-
-
-              <div class="card-body">
-                <h5 class="card-title">Licencias vencidas</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-calendar-x-fill"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ status }}</h6>
-                    
-
-                  </div>
-                </div>
+              <div class="ps-3">
+                {% for lic in license  %}
+                  <h6>{{ lic }}</h6>
+                {% endfor %}
+                
+               
               </div>
-
             </div>
-          </div><!-- END CARD -->
-
-           <!-- CARD -->
-           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card sales-card">
-
-
-              <div class="card-body">
-                <h5 class="card-title">Total licencias acumuladas</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-upc"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ remain.total }}</h6>
-
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div><!-- END CARD -->
-
-
-          <!-- TABLE REPORT -->
-        <div class="col-12">
-            <div class="card recent-sales overflow-auto">
-
-              <div class="card-body">
-                <h5 class="card-title">|REPORT|</h5>
-
-                <table class="table table-borderless datatable">
-                    <thead>
-                        <tr>
-
-                        <th scope="col">Year</th>
-                        <th scope="col">Antiquity</th>
-                        <th scope="col">Leave days</th>
-                        <th scope="col">Remainder</th>
-                        <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-                        {% for d in detail %}
-                            <tr>
-                            <td>{{d.year}}</td>
-                            <td>{{d.antiquity}}</td>
-                            <td>{{d.leave_days}}</td>
-                            <td>{{d.remainder}} </td>
-                            {% if d.status == 1 %}
-                                <td><span class="badge bg-danger">Expired</span></td>
-                            {% else %}
-                                <td><span class="badge bg-success">Available</span></td>
-                            {% endif %}
-                            </tr>
-                        {% endfor %}
-
-                    </tbody>
-                  
-                </table>
-
-            </div>
+          </div>
 
         </div>
+      </div><!-- END CARD -->
+
+       <!-- CARD -->
+       <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+
+
+          <div class="card-body">
+            <h5 class="card-title">Licencias vencidas</span></h5>
+
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <i class="bi bi-calendar-x-fill"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{ status }}</h6>
+                
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- END CARD -->
+
+       <!-- CARD -->
+      <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+
+
+          <div class="card-body">
+            <h5 class="card-title">Total licencias acumuladas</span></h5>
+
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <i class="bi bi-upc"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{ remain.total }}</h6>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- END CARD -->
+
+        
+
+        <!-- Recent Sales -->
+        <div class="col-12">
+          <div class="card recent-sales overflow-auto">
+
+            <div class="card-body">
+              <h5 class="card-title">|REPORT| </h5>
+
+              <table class="table table-borderless datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Antiquity</th>
+                    <th scope="col">Leave days</th>
+                    <th scope="col">Remainder</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for d in detail %}
+                  <tr>
+                  <td>{{d.year}}</td>
+                  <td>{{d.antiquity}}</td>
+                  <td>{{d.leave_days}}</td>
+                  <td>{{d.remainder}} </td>
+                  {% if d.status == 1 %}
+                      <td><span class="badge bg-danger">Expired</span></td>
+                  {% else %}
+                      <td><span class="badge bg-success">Available</span></td>
+                  {% endif %}
+                  </tr>
+              {% endfor %}
+                 
+                </tbody>
+              </table>
+
+            </div>
+
+          </div>
+        </div><!-- End Recent Sales -->
+
+
+
+      </div>
+    </div><!-- End Left side columns -->
+
+    <!-- Right side columns -->
+    <div class="col-lg-4">
+
+      <!-- Recent Activity -->
+      <div class="card">
+      
+        <div class="card-body">
+          <h5 class="card-title">|CALENDAR|</span></h5>
+
           
-     
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="calendar calendar-first" id="calendar_first">
+                  <div class="calendar_header">
+                      <button class="switch-month switch-left"> <i class="fa fa-chevron-left"></i></button>
+                       <h2></h2>
+                      <button class="switch-month switch-right"> <i class="fa fa-chevron-right"></i></button>
+                  </div>
+                  <div class="calendar_weekdays"></div>
+                  <div class="calendar_content"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+         
+         
 
-   
-    </div>
-  </section>
+        </div>
+      </div><!-- End Calendar -->
 
- 
+      
+
+
+
+    </div><!-- End Right side columns -->
+
+  </div>
+</section>
+
+
 
 {% endblock %}
 
