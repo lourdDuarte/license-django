@@ -1,12 +1,72 @@
-{% extends 'base.html' %}
+
+{% extends "base.html" %}
 
 {% block head_content %}
-<title>Dashboard admin</title>
-    
-{% endblock head_content %}
+
+{% endblock %}
+
+{% block container %}
+
+<div class="pagetitle">
+    <h1>REPORT</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Tables</li>
+        <li class="breadcrumb-item active">Data</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">People on vacation</h5>
+
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr >
+ 
+                  <th scope="col" >Person</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Reason</th>
+                  <th scope="col">Return date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for a in adm  %}
+               
+                <tr>
+
+                  <td>{{a.last_name }}  {{ a.fist_name}}</td>
+                  {% if a.status == 1 %}
+                    <td>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="bi bi-check-circle me-1"></i>
+                            Actualmente de licencia  
+                        </div>
+                    </td>
+                  {% endif %}
+                  <td>{{a.description}}</td>
+                  <td>{{a.date_to}}</td>
+                 
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
 
 
-{% block conteiner %}
-    
-{% endblock conteiner %}
-    

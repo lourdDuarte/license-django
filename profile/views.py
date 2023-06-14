@@ -76,9 +76,6 @@ def change_password(request):
         redirect('dashboard')
     return render (request, 'profile.html', {'form':form})
 
-@login_required
-def dashboard_admin(request):
-    return render(request, 'perfil/admin/dashboard_admin.html')
 
 
 

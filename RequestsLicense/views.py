@@ -5,7 +5,9 @@ from django.contrib.auth.decorators import login_required
 from RequestsLicense.models import RequestsLicense
 from .forms import RequestLicenseForm
 import yagmail
+from datetime import date
 
+date = date.today()
 # Create your views here.
 @login_required
 def request_license(request):
@@ -65,3 +67,11 @@ def send_email(destinario, msj):
     mensaje = msj
     yag.send(destinario,asunto, mensaje)
 
+@login_required
+def dashboard_admin(request):
+
+    people_on_vacation = RequestsLicense.objects.filter(status = 1, date_to__gt = date).order_by('fecha_actualizacion')
+    context = {'adm':people_on_vacation}
+
+    
+    return render(request, 'perfil/admin/dashboard_admin.html', context)

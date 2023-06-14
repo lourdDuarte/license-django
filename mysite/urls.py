@@ -34,7 +34,7 @@ urlpatterns = [
     path('update-request/<str:pk>/', license.update_request, name="update-request"),
     path('new-detail/', detail.add_detail,name='new_detail'),
     # vistas admin
-    path('dashboard_admin/', pf.dashboard_admin, name='dashboard_admin'),
+    path('dashboard_admin/', license.dashboard_admin, name='dashboard_admin'),
     path('request/',  license.view_request, name='request')
  
 
