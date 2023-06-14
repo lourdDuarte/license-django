@@ -9,12 +9,12 @@
 <h2>DASHBOARD:</h2>
   <p>Here is a summary of the days available along with the status of each one (among other information). The state is due to the fact that every 2 years if they are not used, they expire</p>
   
-  ![image](https://github.com/lourdDuarte/license-django/assets/66228399/3353f6a3-db57-421c-8dab-e5b1e7847ec0)
+  ![image]![image](https://github.com/lourdDuarte/license-django/assets/66228399/11ae0818-0d25-48c3-80b6-bab8319436d3))
   
 
 <h2>Update profile:</h2>
 
-![image](https://github.com/lourdDuarte/license-django/assets/66228399/68dad34e-e527-4bf0-96d1-4bab13d79f2a)
+![image]![image](https://github.com/lourdDuarte/license-django/assets/66228399/d9a60016-deab-4452-9824-3a9721662ed1)
 
 <h2>New license application</h2>
   <p>Here when entering the dates, the usufruct days (days the user will go on vacation) are automatically calculated and validated in terms of format</p>
@@ -30,5 +30,11 @@
 
 ![image](https://github.com/lourdDuarte/license-django/assets/66228399/921015fd-a0a7-4473-89d9-7dda2b83f194)
 
+<h2> View requests </h2>
+ <p>view license requests (administrator only). Here the status is updated, with the possibility of adding a comment which is sent by mail to the employee</p>
+ 
+![image](https://github.com/lourdDuarte/license-django/assets/66228399/4758a07e-c35c-4418-bf8d-5149d15bc96c)
+
+![image](https://github.com/lourdDuarte/license-django/assets/66228399/f1ca4c1a-c55f-41f9-8437-754e65a0bcd6)
 
 
